@@ -27,7 +27,7 @@ function changeOpacityOfLayer(layerNum) {
 
 
 window.onload = function(){
-  $("#layer0").append("<img class='orig2' src='resources/img" + 2 +"/walk1." + 2 + "full.png' width='1024' height='768' style='position:absolute;left:0px'; />");
+  $("#layer0").append("<img class='orig2' src='resources/img" + 2 +"/walk1." + 2 + "full.png' style='position:absolute;left:0px'; />");
   appendToLayer(1);
   appendToLayer(2);
   appendToLayer(3);
