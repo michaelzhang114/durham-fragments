@@ -1,19 +1,26 @@
+var imgLength = 180;
 function appendToLayer(layerNum) {
   //<img src="/resources/img1/1.png"/>
-  for (var i = 1; i <= 4; i++) {
-    $("#layer" + layerNum).append("<img class='sub"+ layerNum + "x" + i + "' src='resources/img" + layerNum+ "/" + i + ".png' height='256' width='256' style='position:absolute;left:" + (i-1) * 256+"px'; />");
+
+
+
+  for (var i = 1; i <= 6; i++) {
+    $("#layer" + layerNum).append("<img class='sub"+ layerNum + "x" + i + "' src='resources/img" + layerNum+ "/" + i + ".PNG' height='"+ imgLength +"' width='"+ imgLength +"' style='position:absolute;left:" + (i-1) * imgLength + "px'; />");
   }
-  for (var i = 1; i <= 4; i++) {
-    $("#layer" + layerNum).append("<img class='sub"+ layerNum + "x" + (i+4) + "' src='resources/img"+ layerNum+ "/" + (i+4) + ".png' height='256' width='256' style='position:absolute;top:256px;left:" + (i-1) * 256+"px'; />");
+  for (var i = 1; i <= 6; i++) {
+    $("#layer" + layerNum).append("<img class='sub"+ layerNum + "x" + (i+6) + "' src='resources/img"+ layerNum+ "/" + (i+6) + ".PNG' height='"+ imgLength +"' width='"+ imgLength +"' style='position:absolute;top:"+ imgLength +"px;left:" + (i-1) * imgLength + "px'; />");
   }
-  for (var i = 1; i <= 4; i++) {
-    $("#layer" + layerNum).append("<img class='sub"+ layerNum + "x" + (i+8) + "' src='resources/img" + layerNum +"/" + (i+8) + ".png' height='256' width='256' style='position:absolute;top:512px;left:" + (i-1) * 256+"px'; />");
+  for (var i = 1; i <= 6; i++) {
+    $("#layer" + layerNum).append("<img class='sub"+ layerNum + "x" + (i+12) + "' src='resources/img" + layerNum +"/" + (i+12) + ".PNG' height='"+ imgLength +"' width='"+ imgLength +"' style='position:absolute;top:"+ imgLength*2 +"px;left:" + (i-1) * imgLength + "px'; />");
+  }
+  for (var i = 1; i <= 6; i++) {
+    $("#layer" + layerNum).append("<img class='sub"+ layerNum + "x" + (i+18) + "' src='resources/img" + layerNum +"/" + (i+18) + ".PNG' height='"+ imgLength +"' width='"+ imgLength +"' style='position:absolute;top:"+ imgLength*3 +"px;left:" + (i-1) * imgLength + "px'; />");
   }
 }
 
 function changeOpacityOfLayer(layerNum) {
   // var element = document.getElementById('layer3');
-  for (var i = 1; i <= 12; i++) {
+  for (var i = 1; i <= 24; i++) {
     var min=2.0;
     var max=4.5;
     var animationTime = Math.random() * (+max - +min) + +min;
@@ -27,15 +34,15 @@ function changeOpacityOfLayer(layerNum) {
 
 
 window.onload = function(){
-  $("#layer0").append("<img class='orig2' src='resources/img" + 2 +"/walk1." + 2 + "full.png' style='position:absolute;left:0px'; />");
+  $("#layer0").append("<img class='orig1' src='resources/img" + 1 +"/full.png' height='"+ imgLength*4 +"' width='"+ imgLength*6 + "' style='position:absolute;left:0px'; />");
   appendToLayer(1);
   appendToLayer(2);
   appendToLayer(3);
 
 
   changeOpacityOfLayer(3);
-  //changeOpacityOfLayer(2);
-  changeOpacityOfLayer(1);
+  changeOpacityOfLayer(2);
+  //changeOpacityOfLayer(1);
 };
 
 window.addEventListener('DOMContentLoaded', (event) => {
