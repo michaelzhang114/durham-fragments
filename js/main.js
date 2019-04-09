@@ -1,9 +1,12 @@
-var imgLength = 180;
+var imgLength = 75;
+var numColumns = 15;
+var numRows = 10;
+
+
 function appendToLayer(layerNum) {
   //<img src="/resources/img1/1.png"/>
 
-  var numColumns = 6;
-  var numRows = 4;
+
 
   for (var j = 1; j <= numRows; j++) {
     for (var i = 1; i <= numColumns; i++) {
@@ -25,9 +28,9 @@ function appendToLayer(layerNum) {
 
 function changeOpacityOfLayer(layerNum) {
   // var element = document.getElementById('layer3');
-  for (var i = 1; i <= 24; i++) {
-    var min=2.0;
-    var max=4.5;
+  for (var i = 1; i <= (numRows * numColumns); i++) {
+    var min=1.2;
+    var max=5.0;
     var animationTime = Math.random() * (+max - +min) + +min;
     $("#layer" + layerNum +" img.sub" + layerNum + "x" + i).append("<style id='new-animations' type='text/css'> #layer"+layerNum+" img.sub"+ layerNum + "x" + i +" { animation-name: fade; animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-duration: "+ animationTime +"s; animation-direction: alternate;}</style>");
   }
@@ -39,7 +42,7 @@ function changeOpacityOfLayer(layerNum) {
 
 
 window.onload = function(){
-  $("#layer0").append("<img class='orig1' src='resources/img" + 1 +"/full.png' height='"+ imgLength*4 +"' width='"+ imgLength*6 + "' style='position:absolute;left:0px'; />");
+  $("#layer0").append("<img class='orig1' src='resources/img" + 1 +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
   appendToLayer(1);
   appendToLayer(2);
   appendToLayer(3);
@@ -47,7 +50,7 @@ window.onload = function(){
 
   changeOpacityOfLayer(3);
   changeOpacityOfLayer(2);
-  //changeOpacityOfLayer(1);
+  changeOpacityOfLayer(1);
 };
 
 window.addEventListener('DOMContentLoaded', (event) => {
