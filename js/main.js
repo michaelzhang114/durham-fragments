@@ -37,9 +37,9 @@ function randomReplaceSquares(nextWalkNum) {
   (function myLoop (i) {
      setTimeout(function () {
       if (--i) myLoop(i);
-        appendImageToLayerAndChangeOpacity(arrayIndices[i], nextWalkNum);
-              //  decrement i and call myLoop again if i > 0
-     }, 500)
+      if (i==parseInt((numRows*numColumns * (.25)))) {console.log("half");appendDefaultImage(nextWalkNum);}
+      appendImageToLayerAndChangeOpacity(arrayIndices[i], nextWalkNum);
+     }, 250)
   })(numRows * numColumns);
 }
 
@@ -49,11 +49,16 @@ function appendImageToLayerAndChangeOpacity(oldImageNum, nextWalkNum) {
   //$("#layer" + layerNum).children("img.sub" + layerNum + "x" + oldImageNum).remove();
   //'resources/walk" + walkNum + "/img" + layerNum+ "/" + (i+(j-1)*numColumns) + ".PNG'
   for (var i = 1; i <= numOfMasks; i++) {
-    $("#layer" + i +" img.sub" + i + "x" + oldImageNum).attr("src", "");
+    //$("#layer" + i +" img.sub" + i + "x" + oldImageNum).attr("src", "");
     $("#layer" + i +" img.sub" + i + "x" + oldImageNum).attr("src", "resources/walk" + nextWalkNum + "/img" + i +"/" + oldImageNum + ".PNG");
   }
     //$("#layer" + layerNum +" img.sub" + layerNum + "x" + oldImageNum).append("<style id='new-animations' type='text/css'> #layer"+layerNum+" img.sub"+ layerNum + "x" + newImageNum +" { animation-name: fade; animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-duration: "+ animationTime +"s; animation-direction: alternate;}</style>");
 
+}
+
+function appendDefaultImage(walkNum) {
+  //$("#layer0").append("<img class='orig1' src='resources/walk1/img" + defaultImageNum +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
+  $("#orig1").attr("src", "resources/walk" + walkNum + "/img" + 1 + "/full.png");
 }
 
 
@@ -82,7 +87,7 @@ function getRandomInt(min, max) {
 
 window.onload = function(){
   var defaultImageNum = 2;
-  //$("#layer0").append("<img class='orig1' src='resources/walk1/img" + defaultImageNum +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
+  $("#layer0").append("<img id='orig1' src='resources/walk1/img" + defaultImageNum +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
 
 
   var walkNum = 1;
@@ -91,9 +96,9 @@ window.onload = function(){
   appendToLayerOrdered(3, walkNum);
 
 
-  // changeOpacityOfLayer(3);
-  // changeOpacityOfLayer(2);
-  // changeOpacityOfLayer(1);
+  changeOpacityOfLayer(3);
+  changeOpacityOfLayer(2);
+  changeOpacityOfLayer(1);
 
 };
 
