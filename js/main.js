@@ -68,7 +68,7 @@ window.onload = function(){
 
   // changeOpacityOfLayer(3);
   // changeOpacityOfLayer(2);
-  // changeOpacityOfLayer(1);
+   changeOpacityOfLayer(1);
 
   //setTimeout(randomReplaceSquares(3), 3000);
 
