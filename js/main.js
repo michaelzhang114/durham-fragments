@@ -3,6 +3,8 @@ var numColumns = 12;
 var numRows = 8;
 var numOfWalks = 3;
 var numOfMasks = 3;
+var SQUARE_TRANSITION_TIME = 500;
+var currentWalkNum = 1;
 
 
 function appendToLayerOrdered(layerNum, walkNum) {
@@ -26,7 +28,6 @@ function changeOpacityOfLayer(layerNum) {
 
 
 function randomReplaceSquares(nextWalkNum) {
-
   console.log("replacing");
   var arrayIndices = [];
   for (var i = 1; i <= (numRows * numColumns); i++) {
@@ -39,25 +40,18 @@ function randomReplaceSquares(nextWalkNum) {
       if (--i) myLoop(i);
       if (i==parseInt((numRows*numColumns * (.25)))) {console.log("half");appendDefaultImage(nextWalkNum);}
       appendImageToLayerAndChangeOpacity(arrayIndices[i], nextWalkNum);
-     }, 250)
+     }, SQUARE_TRANSITION_TIME)
   })(numRows * numColumns);
 }
 
 function appendImageToLayerAndChangeOpacity(oldImageNum, nextWalkNum) {
   console.log("changing images" + oldImageNum + "walk" + nextWalkNum);
-
-  //$("#layer" + layerNum).children("img.sub" + layerNum + "x" + oldImageNum).remove();
-  //'resources/walk" + walkNum + "/img" + layerNum+ "/" + (i+(j-1)*numColumns) + ".PNG'
   for (var i = 1; i <= numOfMasks; i++) {
-    //$("#layer" + i +" img.sub" + i + "x" + oldImageNum).attr("src", "");
     $("#layer" + i +" img.sub" + i + "x" + oldImageNum).attr("src", "resources/walk" + nextWalkNum + "/img" + i +"/" + oldImageNum + ".PNG");
   }
-    //$("#layer" + layerNum +" img.sub" + layerNum + "x" + oldImageNum).append("<style id='new-animations' type='text/css'> #layer"+layerNum+" img.sub"+ layerNum + "x" + newImageNum +" { animation-name: fade; animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-duration: "+ animationTime +"s; animation-direction: alternate;}</style>");
-
 }
 
 function appendDefaultImage(walkNum) {
-  //$("#layer0").append("<img class='orig1' src='resources/walk1/img" + defaultImageNum +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
   $("#orig1").attr("src", "resources/walk" + walkNum + "/img" + 1 + "/full.png");
 }
 
@@ -107,19 +101,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     //var tmp_layer = 1;
     //randomReplaceSquares(tmp_layer)
-    var nextWalkNum = getRandomInt(1,numOfWalks);
-    console.log("next walk" + nextWalkNum);
-    //for (let i = 1; i <= numOfMasks; i++) {
-
-      setTimeout(function(){
-        randomReplaceSquares(nextWalkNum);
-        // randomReplaceSquares(2, nextWalkNum);
-        // randomReplaceSquares(3, nextWalkNum);
-      }, 3000);
-
-
-    //}
+    (function executeAction (i) {
+      setTimeout(function () {
+        var nextWalkNum = getRandomInt(1,numOfWalks);
+        while(nextWalkNum == currentWalkNum) {
+          nextWalkNum = getRandomInt(1,numOfWalks);
+        }
+        currentWalkNum = nextWalkNum;
+        console.log("next walk" + currentWalkNum);
+        if (--i) {console.log("iteration:" + i);  executeAction(i);}
+        doTransition(currentWalkNum);
+     }, numColumns * numRows * SQUARE_TRANSITION_TIME)
+    })(10000);
 
 
 });
+
+function doTransition(nextWalkNum) {
+  setTimeout(function(){
+    randomReplaceSquares(nextWalkNum);
+  }, 3000);
+}
 
