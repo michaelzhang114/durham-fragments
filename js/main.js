@@ -21,26 +21,35 @@ function changeOpacityOfLayer(layerNum) {
   }
 }
 
-function appendImageToLayerAndChangeOpacity(oldImageNum, layerNum, newImageNum) {
+function appendImageToLayerAndChangeOpacity(oldImageNum, layerNum) {
+  console.log("changing images" + oldImageNum);
   //$("#layer" + layerNum).children("img.sub" + layerNum + "x" + oldImageNum).remove();
   //'resources/walk" + walkNum + "/img" + layerNum+ "/" + (i+(j-1)*numColumns) + ".PNG'
   $("#layer" + layerNum +" img.sub" + layerNum + "x" + oldImageNum).attr("src", "");
-  $("#layer" + layerNum +" img.sub" + layerNum + "x" + oldImageNum).attr("src", "resources/walk" + 2 + "/img" + 1 +"/" +newImageNum + ".PNG");
+  $("#layer" + layerNum +" img.sub" + layerNum + "x" + oldImageNum).attr("src", "resources/walk" + 2 + "/img" + 1 +"/" +oldImageNum + ".PNG");
   //$("#layer" + layerNum +" img.sub" + layerNum + "x" + oldImageNum).append("<style id='new-animations' type='text/css'> #layer"+layerNum+" img.sub"+ layerNum + "x" + newImageNum +" { animation-name: fade; animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-duration: "+ animationTime +"s; animation-direction: alternate;}</style>");
 
 }
 
 function randomReplaceSquares(layerNum) {
+  console.log("replacing");
   var arrayIndices = [];
   for (var i = 1; i <= (numRows * numColumns); i++) {
     arrayIndices.push(i);
   }
   shuffle(arrayIndices);
-  // appendImageToLayerAndChangeOpacity(1, layerNum, 1)
-  // for (var i = 0; i < arrayIndices.length; i++) {
-  //   var currentIndex = arrayIndices[i];
-  // }
+
+  (function myLoop (i) {
+     setTimeout(function () {
+        appendImageToLayerAndChangeOpacity(arrayIndices[i], layerNum, arrayIndices[i]);
+        if (--i) myLoop(i);      //  decrement i and call myLoop again if i > 0
+     }, 1000)
+  })(numRows * numColumns);
 }
+
+
+
+
 
 
 function shuffle(a) {
@@ -54,6 +63,8 @@ function shuffle(a) {
     return a;
 }
 
+
+
 window.onload = function(){
   var defaultImageNum = 2;
   //$("#layer0").append("<img class='orig1' src='resources/walk1/img" + defaultImageNum +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
@@ -61,7 +72,9 @@ window.onload = function(){
 
   var walkNum = 1;
   appendToLayerOrdered(1, walkNum);
-  randomReplaceSquares(1);
+
+
+
   // appendToLayerOrdered(2, walkNum);
   // appendToLayerOrdered(3, walkNum);
 
@@ -69,6 +82,7 @@ window.onload = function(){
   // changeOpacityOfLayer(3);
   // changeOpacityOfLayer(2);
    changeOpacityOfLayer(1);
+
 
   //setTimeout(randomReplaceSquares(3), 3000);
 
@@ -78,5 +92,9 @@ window.onload = function(){
 
 window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
+
+    var tmp_layer = 1;
+    //randomReplaceSquares(tmp_layer)
+    setTimeout(function(){randomReplaceSquares(tmp_layer)}, 3000);
 });
 
