@@ -3,7 +3,7 @@ var numColumns = 12;
 var numRows = 8;
 var numOfWalks = 3;
 var numOfMasks = 3;
-var SQUARE_TRANSITION_TIME = 50;
+var SQUARE_TRANSITION_TIME = 30;
 //var WALK_TRANSITION_TIME = 5000;
 var currentWalkNum = 1;
 
