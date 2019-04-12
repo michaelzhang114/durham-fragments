@@ -11,6 +11,17 @@ html, body {
     height: 100%;
 }
 
+.paused{
+    -webkit-animation-play-state:paused;
+    -moz-animation-play-state:paused;
+    -o-animation-play-state:paused;
+    animation-play-state:paused;
+}
+
+#controlling {
+  position: relative;
+}
+
 /*#layer3 {
   position:absolute;
   left:0;

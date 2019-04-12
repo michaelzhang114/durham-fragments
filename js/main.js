@@ -3,7 +3,8 @@ var numColumns = 12;
 var numRows = 8;
 var numOfWalks = 3;
 var numOfMasks = 3;
-var SQUARE_TRANSITION_TIME = 500;
+var SQUARE_TRANSITION_TIME = 50;
+//var WALK_TRANSITION_TIME = 5000;
 var currentWalkNum = 1;
 
 
@@ -27,7 +28,7 @@ function changeOpacityOfLayer(layerNum) {
 
 
 
-function randomReplaceSquares(nextWalkNum) {
+function randomReplaceSquares() {
   console.log("replacing");
   var arrayIndices = [];
   for (var i = 1; i <= (numRows * numColumns); i++) {
@@ -38,21 +39,25 @@ function randomReplaceSquares(nextWalkNum) {
   (function myLoop (i) {
      setTimeout(function () {
       if (--i) myLoop(i);
-      if (i==parseInt((numRows*numColumns * (.25)))) {console.log("half");appendDefaultImage(nextWalkNum);}
-      appendImageToLayerAndChangeOpacity(arrayIndices[i], nextWalkNum);
+      if (i==parseInt((numRows*numColumns * (.25)))) {console.log("half");appendDefaultImage(currentWalkNum);}
+      appendImageToLayerAndChangeOpacity(arrayIndices[i], currentWalkNum);
      }, SQUARE_TRANSITION_TIME)
   })(numRows * numColumns);
+
+  //executeNextTransition();
+
+
 }
 
-function appendImageToLayerAndChangeOpacity(oldImageNum, nextWalkNum) {
-  console.log("changing images" + oldImageNum + "walk" + nextWalkNum);
+function appendImageToLayerAndChangeOpacity(oldImageNum) {
+  console.log("changing images" + oldImageNum + "walk" + currentWalkNum);
   for (var i = 1; i <= numOfMasks; i++) {
-    $("#layer" + i +" img.sub" + i + "x" + oldImageNum).attr("src", "resources/walk" + nextWalkNum + "/img" + i +"/" + oldImageNum + ".PNG");
+    $("#layer" + i +" img.sub" + i + "x" + oldImageNum).attr("src", "resources/walk" + currentWalkNum + "/img" + i +"/" + oldImageNum + ".PNG");
   }
 }
 
-function appendDefaultImage(walkNum) {
-  $("#orig1").attr("src", "resources/walk" + walkNum + "/img" + 1 + "/full.png");
+function appendDefaultImage() {
+  $("#orig1").attr("src", "resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) + "/full.png");
 }
 
 
@@ -101,25 +106,46 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     //var tmp_layer = 1;
     //randomReplaceSquares(tmp_layer)
-    (function executeAction (i) {
-      setTimeout(function () {
-        var nextWalkNum = getRandomInt(1,numOfWalks);
-        while(nextWalkNum == currentWalkNum) {
-          nextWalkNum = getRandomInt(1,numOfWalks);
-        }
-        currentWalkNum = nextWalkNum;
-        console.log("next walk" + currentWalkNum);
-        if (--i) {console.log("iteration:" + i);  executeAction(i);}
-        doTransition(currentWalkNum);
-     }, numColumns * numRows * SQUARE_TRANSITION_TIME)
-    })(10000);
+
+    //executeNextTransition()
+
 
 
 });
 
-function doTransition(nextWalkNum) {
-  setTimeout(function(){
-    randomReplaceSquares(nextWalkNum);
-  }, 3000);
+function executeNextTransition() {
+  var nextWalkNum = getRandomInt(1,numOfWalks);
+  while(nextWalkNum == currentWalkNum) {
+    nextWalkNum = getRandomInt(1,numOfWalks);
+  }
+  currentWalkNum = nextWalkNum;
+  console.log("next walk" + currentWalkNum);
+  randomReplaceSquares(currentWalkNum);
+  //doTransition(currentWalkNum);
 }
+
+// function doTransition() {
+//   setTimeout(function(){
+//     randomReplaceSquares(currentWalkNum);
+//   }, WALK_TRANSITION_TIME);
+// }
+
+function stopAnimation() {
+  console.log("stopping");
+  for (var j = 1; j <= numOfMasks; j++) {
+    for (var i = 1; i <= (numRows * numColumns); i++) {
+      $("#layer" + j +" img.sub" + j + "x" + i).addClass("paused");
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
