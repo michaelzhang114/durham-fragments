@@ -57,13 +57,9 @@ function appendImageToLayerAndChangeOpacity(oldImageNum) {
 }
 
 function appendDefaultImage() {
-  $("#orig1").attr("src", "resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) + "/full.png");
+  $("#layer0").append("<img id='newOrig' src='resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
+  //$("#orig1").attr("src", "resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) + "/full.png");
 }
-
-
-
-
-
 
 function shuffle(a) {
     var j, x, i;
@@ -85,11 +81,12 @@ function getRandomInt(min, max) {
 
 
 window.onload = function(){
-  var defaultImageNum = 2;
-  $("#layer0").append("<img id='orig1' src='resources/walk1/img" + defaultImageNum +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
+
+  var walkNum = getRandomInt(1,numOfMasks);
+
+  $("#layer0").append("<img id='orig1' src='resources/walk" + walkNum + "/img" + getRandomInt(1,numOfMasks) +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
 
 
-  var walkNum = 1;
   appendToLayerOrdered(1, walkNum);
   appendToLayerOrdered(2, walkNum);
   appendToLayerOrdered(3, walkNum);
