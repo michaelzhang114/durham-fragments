@@ -113,16 +113,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
 });
 
-
-// function myTimeoutFunction()
-// {
-//     executeNextTransition();
-// }
-
-// myTimeoutFunction();
-// setInterval(myTimeoutFunction, 1000);
-
-
 function executeNextTransition() {
   var nextWalkNum = getRandomInt(1,numOfWalks);
   while(nextWalkNum == currentWalkNum) {
@@ -133,16 +123,6 @@ function executeNextTransition() {
   randomReplaceSquares(currentWalkNum);
   //doTransition(currentWalkNum);
 }
-
-
-
-
-
-// function doTransition() {
-//   setTimeout(function(){
-//     randomReplaceSquares(currentWalkNum);
-//   }, WALK_TRANSITION_TIME);
-// }
 
 function stopAnimation() {
   console.log("stopping");
