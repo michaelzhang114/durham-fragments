@@ -1,7 +1,7 @@
+var numOfWalks = 7;
 var imgLength = 75;
 var numColumns = 12;
 var numRows = 8;
-var numOfWalks = 3;
 var numOfMasks = 3;
 var SQUARE_TRANSITION_TIME = 30;
 //var WALK_TRANSITION_TIME = 5000;
@@ -146,6 +146,7 @@ function stopAnimation() {
       $("#layer" + j +" img.sub" + j + "x" + i).addClass("paused");
     }
   }
+  $("#orig").addClass("paused");
 }
 
 
