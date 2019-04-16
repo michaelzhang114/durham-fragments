@@ -5,7 +5,7 @@ var numRows = 8;
 var numOfMasks = 3;
 var SQUARE_TRANSITION_TIME = 35;
 var DEFAULT_IMAGE_FADE_TIME = 2000;
-//var WALK_TRANSITION_TIME = 5000;
+var WALK_TRANSITION_TIME = 10000;
 var currentWalkNum = 1;
 var intervalTransitionsId;
 var imageTransitionsId;
@@ -105,7 +105,7 @@ window.onload = function(){
   changeOpacityOfLayer(2);
   changeOpacityOfLayer(1);
 
-  intervalTransitionsId = setInterval(executeNextTransition, 10000);
+  intervalTransitionsId = setInterval(executeNextTransition, WALK_TRANSITION_TIME);
 
 };
 
@@ -152,16 +152,5 @@ function startAnimation() {
   changeOpacityOfLayer(3);
   changeOpacityOfLayer(2);
   changeOpacityOfLayer(1);
-  intervalTransitionsId = setInterval(executeNextTransition, 10000);
+  intervalTransitionsId = setInterval(executeNextTransition, WALK_TRANSITION_TIME);
 }
-
-
-
-
-
-
-
-
-
-
-
