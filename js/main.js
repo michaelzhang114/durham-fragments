@@ -39,7 +39,8 @@ function randomReplaceSquares() {
   (function myLoop (i) {
      setTimeout(function () {
       if (--i) myLoop(i);
-      if (i==parseInt((numRows*numColumns * (.25)))) {console.log("half");appendDefaultImage(currentWalkNum);}
+      //parseInt((numRows*numColumns * (.25)))
+      if (i==0) {console.log("half");appendDefaultImage(currentWalkNum);}
       appendImageToLayerAndChangeOpacity(arrayIndices[i], currentWalkNum);
      }, SQUARE_TRANSITION_TIME)
   })(numRows * numColumns);
@@ -57,8 +58,19 @@ function appendImageToLayerAndChangeOpacity(oldImageNum) {
 }
 
 function appendDefaultImage() {
-  $("#layer0").append("<img id='newOrig' src='resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
+  //$("#layer0").children("img").addClass("top-fade");
+
+  //$("#layer0").append("<img id='orig' src='resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
   //$("#orig1").attr("src", "resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) + "/full.png");
+
+
+  $("#orig").fadeTo(1500,0.7, function() {
+    $("#orig").attr("src", "resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) + "/full.png");
+  }).fadeTo(2000,0.95);
+
+
+
+
 }
 
 function shuffle(a) {
@@ -84,7 +96,7 @@ window.onload = function(){
 
   var walkNum = getRandomInt(1,numOfMasks);
 
-  $("#layer0").append("<img id='orig1' src='resources/walk" + walkNum + "/img" + getRandomInt(1,numOfMasks) +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
+  $("#layer0").append("<img id='orig' src='resources/walk" + walkNum + "/img" + getRandomInt(1,numOfMasks) +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
 
 
   appendToLayerOrdered(1, walkNum);
