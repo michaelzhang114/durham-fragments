@@ -1,14 +1,25 @@
-.hello {
-  background-color: yellow;
-}
-
-.container {
-  background-color: blue;
-}
 
 html, body {
   margin: 0;
   height: 100%;
+}
+
+.container {
+  width: 80%; /*can be in percentage also.*/
+  height: auto;
+      margin: 0 auto;
+      padding: 0px;
+      position: relative;
+}
+
+.main-content {
+    top: 160px;
+    left: 160px;
+    width: 800px;
+    min-height: 500px;
+    height: auto;
+    /*background-color: #2185C5;*/
+    position: relative;
 }
 
 .paused{
