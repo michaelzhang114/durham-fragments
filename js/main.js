@@ -3,9 +3,12 @@ var imgLength = 80;
 var numColumns = 12;
 var numRows = 8;
 var numOfMasks = 3;
-var SQUARE_TRANSITION_TIME = 30;
+var SQUARE_TRANSITION_TIME = 35;
+var DEFAULT_IMAGE_FADE_TIME = 2000;
 //var WALK_TRANSITION_TIME = 5000;
 var currentWalkNum = 1;
+var intervalTransitionsId;
+var imageTransitionsId;
 
 
 function appendToLayerOrdered(layerNum, walkNum) {
@@ -26,8 +29,6 @@ function changeOpacityOfLayer(layerNum) {
   }
 }
 
-
-
 function randomReplaceSquares() {
   console.log("replacing");
   var arrayIndices = [];
@@ -37,7 +38,7 @@ function randomReplaceSquares() {
   shuffle(arrayIndices);
 
   (function myLoop (i) {
-     setTimeout(function () {
+     imageTransitionsId = setTimeout(function () {
       if (--i) myLoop(i);
       //parseInt((numRows*numColumns * (.25)))
       if (i==0) {console.log("half");appendDefaultImage(currentWalkNum);}
@@ -56,17 +57,12 @@ function appendImageToLayerAndChangeOpacity(oldImageNum) {
 
 function appendDefaultImage() {
   //$("#layer0").children("img").addClass("top-fade");
-
   //$("#layer0").append("<img id='orig' src='resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
   //$("#orig1").attr("src", "resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) + "/full.png");
 
-
-  $("#orig").fadeTo(1500,0.7, function() {
+  jQuery("#orig").fadeTo(DEFAULT_IMAGE_FADE_TIME,0.6, function() {
     $("#orig").attr("src", "resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) + "/full.png");
-  }).fadeTo(2000,0.95);
-
-
-
+  }).fadeTo(DEFAULT_IMAGE_FADE_TIME,0.95);
 
 }
 
@@ -109,11 +105,23 @@ window.onload = function(){
   changeOpacityOfLayer(2);
   changeOpacityOfLayer(1);
 
+  intervalTransitionsId = setInterval(executeNextTransition, 10000);
+
 };
 
 window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
 });
+
+
+// function myTimeoutFunction()
+// {
+//     executeNextTransition();
+// }
+
+// myTimeoutFunction();
+// setInterval(myTimeoutFunction, 1000);
+
 
 function executeNextTransition() {
   var nextWalkNum = getRandomInt(1,numOfWalks);
@@ -125,6 +133,10 @@ function executeNextTransition() {
   randomReplaceSquares(currentWalkNum);
   //doTransition(currentWalkNum);
 }
+
+
+
+
 
 // function doTransition() {
 //   setTimeout(function(){
@@ -140,6 +152,27 @@ function stopAnimation() {
     }
   }
   $("#orig").addClass("paused");
+
+  $("#orig").stop().fadeTo(DEFAULT_IMAGE_FADE_TIME,0.6, function() {
+    $("#orig").attr("src", "resources/walk" + currentWalkNum + "/img" + getRandomInt(1,numOfMasks) + "/full.png");
+  }).stop().fadeTo(DEFAULT_IMAGE_FADE_TIME,0.95);
+
+  clearInterval(window.intervalTransitionsId);
+  //clearTimeout(window.imageTransitionsId);
+}
+
+function startAnimation() {
+  console.log("starting");
+  for (var j = 1; j <= numOfMasks; j++) {
+    for (var i = 1; i <= (numRows * numColumns); i++) {
+      $("#layer" + j +" img.sub" + j + "x" + i).removeClass("paused");
+    }
+  }
+  $("#orig").removeClass("paused");
+  changeOpacityOfLayer(3);
+  changeOpacityOfLayer(2);
+  changeOpacityOfLayer(1);
+  intervalTransitionsId = setInterval(executeNextTransition, 10000);
 }
 
 
