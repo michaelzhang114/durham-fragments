@@ -4,22 +4,40 @@ html, body {
   height: 100%;
 }
 
-.container {
-  width: 80%; /*can be in percentage also.*/
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-style: italic;
+}
+
+p {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.disp-container {
+  /*width: 80%;
   height: auto;
-      margin: 0 auto;
-      padding: 0px;
-      position: relative;
+  margin: 0 auto;
+  padding: 0px;
+  position: relative;*/
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -480px;
+  margin-top: -320px;
+}
+
+#heading {
 }
 
 .main-content {
-    top: 160px;
+
+    /*top: 160px;
     left: 160px;
-    width: 800px;
+    width: 500px;
     min-height: 500px;
     height: auto;
     /*background-color: #2185C5;*/
-    position: relative;
+    /*position: relative;*/
 }
 
 .paused{
@@ -53,5 +71,53 @@ html, body {
   }
   100% {
     opacity: 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn ease 2s;
+  -webkit-animation: fadeIn ease 2s;
+  -moz-animation: fadeIn ease 2s;
+  -o-animation: fadeIn ease 2s;
+  -ms-animation: fadeIn ease 2s;
+}
+@keyframes fadeIn{
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
   }
 }

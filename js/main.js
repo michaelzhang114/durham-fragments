@@ -44,10 +44,7 @@ function randomReplaceSquares() {
       appendImageToLayerAndChangeOpacity(arrayIndices[i], currentWalkNum);
      }, SQUARE_TRANSITION_TIME)
   })(numRows * numColumns);
-
   //executeNextTransition();
-
-
 }
 
 function appendImageToLayerAndChangeOpacity(oldImageNum) {
@@ -94,6 +91,10 @@ function getRandomInt(min, max) {
 
 window.onload = function(){
 
+  // setTimeout(function(){
+  //   console.log("holding...");
+  // }, 1000);
+
   var walkNum = getRandomInt(1,numOfMasks);
 
   $("#layer0").append("<img id='orig' src='resources/walk" + walkNum + "/img" + getRandomInt(1,numOfMasks) +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
@@ -112,14 +113,6 @@ window.onload = function(){
 
 window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
-
-    //var tmp_layer = 1;
-    //randomReplaceSquares(tmp_layer)
-
-    //executeNextTransition()
-
-
-
 });
 
 function executeNextTransition() {
