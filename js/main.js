@@ -86,32 +86,26 @@ function getRandomInt(min, max) {
 
 
 window.onload = function(){
-
-  // setTimeout(function(){
-  //   console.log("holding...");
-  // }, 1000);
-
   var walkNum = getRandomInt(1,numOfMasks);
-
   $("#layer0").append("<img id='orig' src='resources/walk" + walkNum + "/img" + getRandomInt(1,numOfMasks) +"/full.png' height='"+ imgLength*numRows +"' width='"+ imgLength*numColumns + "' style='position:absolute;left:0px'; />");
-
-
   appendToLayerOrdered(1, walkNum);
   appendToLayerOrdered(2, walkNum);
   appendToLayerOrdered(3, walkNum);
-
-
   changeOpacityOfLayer(3);
   changeOpacityOfLayer(2);
   changeOpacityOfLayer(1);
-
+  centerTheImageDisplay();
   intervalTransitionsId = setInterval(executeNextTransition, WALK_TRANSITION_TIME);
-
 };
 
 window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
 });
+
+function centerTheImageDisplay() {
+  $(".disp-container").css("margin-left", (imgLength * numColumns / -2) + "px");
+  $(".disp-container").css("margin-top", (imgLength * numRows / -2) + "px");
+}
 
 function executeNextTransition() {
   var nextWalkNum = getRandomInt(1,numOfWalks);
