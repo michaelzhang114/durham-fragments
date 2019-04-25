@@ -1,4 +1,4 @@
-var numOfWalks = 7;
+var numOfWalks = 9;
 var imgLength = 110;
 var numColumns = 12;
 var numRows = 8;
