@@ -1,5 +1,5 @@
 var numOfWalks = 9;
-var imgLength = 110;
+var imgLength = 125;
 var numColumns = 12;
 var numRows = 8;
 var numOfMasks = 3;
