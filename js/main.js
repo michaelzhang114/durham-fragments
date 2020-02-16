@@ -2,7 +2,7 @@
 var numOfWalks = 11;
 
 // pixel length of an individual square image
-var imgLength = 150;
+var imgLength = 80;
 
 // row x column size
 var numColumns = 12;
@@ -21,6 +21,24 @@ var currentWalkNum = 1;
 var intervalTransitionsId;
 var imageTransitionsId;
 
+
+function getUrlVars() {
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+      vars[key] = value;
+  });
+  return vars;
+}
+
+function getUrlParam(parameter, defaultvalue){
+  var urlparameter = defaultvalue;
+  if(window.location.href.indexOf(parameter) > -1){
+      urlparameter = getUrlVars()[parameter];
+      }
+  return urlparameter;
+}
+
+imgLength = getUrlParam('image_length', 80);
 
 function appendToLayerOrdered(layerNum, walkNum) {
   for (var j = 1; j <= numRows; j++) {
