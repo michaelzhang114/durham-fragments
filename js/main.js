@@ -1,11 +1,22 @@
+// number of walks in the resources folder
 var numOfWalks = 11;
-var imgLength = 80;
+
+// pixel length of an individual square image
+var imgLength = 150;
+
+// row x column size
 var numColumns = 12;
 var numRows = 8;
+
+// number of masks per walk
 var numOfMasks = 3;
+
+// animation variables
 var SQUARE_TRANSITION_TIME = 35;
 var DEFAULT_IMAGE_FADE_TIME = 2000;
 var WALK_TRANSITION_TIME = 10000;
+
+// starting walk number
 var currentWalkNum = 1;
 var intervalTransitionsId;
 var imageTransitionsId;
