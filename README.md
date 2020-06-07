@@ -4,7 +4,12 @@
 The live application can be found at https://durham-fragments.herokuapp.com
 
 #### Image length parameter
-By specifying `image_length`, you can adjust the pixel length of individual squares. The default is `image_length=80`. The original length of the squares is `150`.
+By specifying `image_length`, you can adjust the pixel length of individual squares. The default is `image_length=80`. For example:
+
+50 pixels: https://durham-fragments.herokuapp.com/home.html?image_length=50
+150 pixels: https://durham-fragments.herokuapp.com/home.html?image_length=150
+
+The original length of the squares is `150`.
 
 ### About “Fragments” 
 
