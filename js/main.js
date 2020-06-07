@@ -1,5 +1,5 @@
 // number of walks in the resources folder
-var numOfWalks = 22;
+var numOfWalks = 14;
 
 // pixel length of an individual square image
 var imgLength = 80;
