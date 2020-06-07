@@ -1,5 +1,11 @@
 # Durham Fragments
 
+### Application Details
+The live application can be found at https://durham-fragments.herokuapp.com
+
+#### Image length parameter
+By specifying `image_length`, you can adjust the pixel length of individual squares. The default is `image_length=80`. The original length of the squares is `150`.
+
 ### About “Fragments” 
 
 The first iteration of this piece was created for the Spring 2019 Generative Media Authorship course taught by Bill Seaman and John Supko. 
