@@ -16,3 +16,12 @@ Fragments ultimately offers the viewer bits of indexical, documentary evidence o
 
 Finally, it must be stated that this piece represents a very specific, and a surface representation of the idea of gentrification. As a relatively new resident to the city, and one who struggled to make sense of it because of the pace of change, I could only imagine how it must feel to be a long time resident of the city. As a photographer, my practice has always centered on attempts to evoke a sense of place through the necessarily incomplete medium of the still image. This piece is the closest I could think of in terms of representing a sense of place that was elusive to me personally.  
 
+### Peter Hoffman
+
+Peter is a Durham, NC based photographer, artist and educator. He combines his roots in documentary photography with experimental approaches in image making. He is a 2019 graduate of the MFA Studio Art program at UNC Chapel Hill (where he took advantage of the interinstitutional agreement to take Duke classes). He is currently a lecturer at the UNC-Chapel Hill Hussman School of Journalism and Media.
+
+
+### Michael Zhang
+
+Michael is an undergraduate senior at Duke University studying Electrical and Computer Engineering and Philosophy. He has a passion for generative artworks and strives to pursue his aesthetic goals with the aid of technology. Michael has experience with Max/MSP, Java, Javascript, Python, and C.
+
