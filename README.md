@@ -9,7 +9,7 @@ By specifying `image_length`, you can adjust the pixel length of individual squa
 - 50 pixels: https://durham-fragments.herokuapp.com/home.html?image_length=50
 - 150 pixels: https://durham-fragments.herokuapp.com/home.html?image_length=150
 
-The original length of the squares is `150`.
+The original length of the squares is `150`, so any setting greater than 150 would be increasing the size of squares beyond their original resolution.
 
 ### About “Fragments” 
 
